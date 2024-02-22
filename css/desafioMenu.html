@@ -7,7 +7,115 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        /* ... */
+        body{
+            margin: 0px;
+            font-family: 'Oswald';
+            background-color: rgb(210, 210, 207);
+        }
+       .cabecalho{
+        background-color: rgb(39 32 32);       
+        margin: 0px;
+        width: 100%;
+        height: 56px; 
+        box-shadow:0px 0px 0px 3px rgb(33, 139, 182)      
+       }
+       .logo{
+       
+       width: 250px;
+       height: inherit;
+       float: left;
+       overflow: hidden;
+       
+       }
+       .logo img{
+            width: 100%;
+        }   
+        .menu{
+            position: relative;
+            float: inline-start;
+            height: inherit;
+            align-items:center;
+            
+            
+        }
+        .menu li{
+            float: left;
+            color: white; 
+            text-decoration: none;   
+            font-size: 1em;  
+            list-style: none;  
+            padding: 3px;  
+            height: 100%;
+            position: relative;
+            
+            box-sizing: border-box;
+            text-align: center;           
+            padding: 14px 5px 0px 5px;         
+            
+            
+           
+        }
+        .menu li:hover{
+            background-color: rgb(9, 149, 183);
+            color: black;
+        }
+        .menu ul{
+            margin: 0px;
+            height: inherit;
+        }
+        a{text-decoration: inherit;
+        color: inherit;}
+
+        .autenticacao{
+            float: right;
+            color: white; 
+            text-decoration: none;   
+            font-size: 1em;  
+            list-style: none;  
+            padding: 3px;  
+            height: 100%;
+            position: relative;            
+            box-sizing: border-box;
+            text-align: center;           
+            padding: 14px 10px 0px 5px;    
+        }
+        .botao{
+            margin-left: 8px;
+            background-color: rgb(199, 52, 29);
+            padding: 4px 10px 4px 10px;
+            border-radius: 20px;            
+
+        }
+        .destaque:active{
+            background-color: rgb(206, 88, 69);
+        }
+        .menu-toggle{
+            display: none;
+        float: right;
+        margin: 16px 14px 0px 0px;}
+
+        @media(max-width:512px){
+            
+            .menu{display: none;}
+        }
+        @media(max-width:620px){
+            .autenticacao{display: none;}
+            .menu-toggle{display: block;}
+        }
+        @media(max-width:298px){
+           
+            .menu-toggle{display: none;}
+        }
+        @media(max-width:255px){
+            .logo{
+                width:100%;
+                
+            }
+
+        }
+        
+        
+        
     </style>
 </head>
 
@@ -23,16 +131,16 @@
         </button>
         <nav class="menu">
             <ul>
-                <li>
+                <li id="inicio" >
                     <a href="#inicio">Início</a>
                 </li>
-                <li>
-                    <a href="#cursos">Cursos</a>
+                <li id="cursos">
+                    <a  href="#cursos">Cursos</a>
                 </li>
-                <li>
+                <li id="sobre">
                     <a href="#sobre">Sobre</a>
                 </li>
-                <li>
+                <li id="contato">
                     <a href="#contato">Contato</a>
                 </li>
             </ul>
@@ -44,7 +152,28 @@
     </header>
 
     <script>
-        // ...
+        let antigo;
+        document.getElementsByClassName('menu')[0].children[0].childNodes.forEach(element => {
+            element.onclick = function(e){
+                let hash = window.location.hash.substring(1);
+                
+                AlertMenu(e.currentTarget.id);
+            }
+        });
+        
+        function AlertMenu(a){
+            const ativo = document.getElementById(a);
+            if(antigo){
+            const menu = document.getElementById(antigo);
+            menu.style.backgroundColor = '';
+            menu.style.color = 'rgb(255, 255, 255)';
+        }
+
+            ativo.style.backgroundColor = 'rgb(9, 149, 183)'
+            ativo.style.color = 'rgb(0, 0, 0)'
+            antigo = a;
+
+        }
     </script>
 </body>
 
